@@ -1,3 +1,4 @@
+import MovieCard from "@/components/MovieCard";
 import SearchBar from "@/components/SearchBar";
 import { icons } from "@/constants/icons";
 import { images } from "@/constants/images";
@@ -50,24 +51,18 @@ export default function Index() {
         </Text>
         <FlatList
           data={movies}
+          horizontal={false}
+          scrollEnabled={false}
           keyExtractor={(item) => item.id.toString()}
           numColumns={3}
-          columnWrapperStyle={{ justifyContent: "flex-start", gap:20, paddingBottom: 10, paddingRight: 5 }}
+          columnWrapperStyle={{
+            justifyContent: "flex-start",
+            gap: 20,
+            paddingBottom: 10,
+            paddingRight: 5,
+          }}
           className="mt-2 pb-32"
-          scrollEnabled={false}
-          renderItem={({ item }) => (
-            <View className="">
-              <Image
-                source={{
-                  uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                }}
-                className="w-32 h-48 rounded-lg"
-              />
-              <Text className="text-white font-semibold mt-2">
-                {item.title}
-              </Text>
-            </View>
-          )}
+          renderItem={({ item }) => <MovieCard {...item} />}
           showsVerticalScrollIndicator={false}
           contentContainerStyle={{ paddingBottom: 20 }}
           ListEmptyComponent={
