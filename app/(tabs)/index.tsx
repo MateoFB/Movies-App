@@ -24,8 +24,6 @@ export default function Index() {
     error: moviesError,
   } = useFetch(() => fetchMovies({ query: "" }));
 
-  console.log(movies);
-
   let content;
   if (moviesLoading) {
     content = (
@@ -45,6 +43,9 @@ export default function Index() {
         <SearchBar
           onPress={() => router.push("/search")}
           placeHolder="Buscar"
+          value=""
+          onChangeText={() => {}}
+          
         />
         <Text className="text-white font-bold text-lg mt-10 mb-3">
           Películas Populares
